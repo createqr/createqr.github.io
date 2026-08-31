@@ -1,0 +1,57 @@
+---
+import { useTranslations, type SupportedLanguage } from '@/i18n/utils';
+
+export interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const faqs = [
+  { q: t.faq.q1, a: t.faq.a1 },
+  { q: t.faq.q2, a: t.faq.a2 },
+  { q: t.faq.q3, a: t.faq.a3 },
+  { q: t.faq.q4, a: t.faq.a4 },
+  { q: t.faq.q5, a: t.faq.a5 },
+  { q: t.faq.q6, a: t.faq.a6 },
+];
+---
+
+<section id="faq" class="py-16 sm:py-24 relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center mb-12 sm:mb-16">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-brand-500 dark:text-brand-400 mb-2 block">
+        Got Questions?
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        {t.faq.heading}
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400">
+        {t.faq.subheading}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {
+        faqs.map((faq, index) => (
+          <details class="group rounded-2xl glass-panel p-6 [&_summary::-webkit-details-marker]:hidden transition-all duration-200 open:shadow-md">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left font-bold text-base sm:text-lg text-slate-900 dark:text-slate-100 hover:text-brand-500 dark:hover:text-brand-400 focus:outline-none">
+              <span>{faq.q}</span>
+              <span class="flex-shrink-0 p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-open:rotate-180 group-open:bg-brand-500 group-open:text-white transition-all duration-200">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+              {faq.a}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+
+  </div>
+</section>

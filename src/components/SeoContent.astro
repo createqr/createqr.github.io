@@ -1,0 +1,114 @@
+---
+import { useTranslations, type SupportedLanguage } from '@/i18n/utils';
+
+export interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const useCases = [
+  {
+    title: t.seoContent.uc1Title,
+    desc: t.seoContent.uc1Desc,
+    icon: `<svg class="w-6 h-6 text-brand-500 dark:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  },
+  {
+    title: t.seoContent.uc2Title,
+    desc: t.seoContent.uc2Desc,
+    icon: `<svg class="w-6 h-6 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+  },
+  {
+    title: t.seoContent.uc3Title,
+    desc: t.seoContent.uc3Desc,
+    icon: `<svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`,
+  },
+  {
+    title: t.seoContent.uc4Title,
+    desc: t.seoContent.uc4Desc,
+    icon: `<svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>`,
+  },
+  {
+    title: t.seoContent.uc5Title,
+    desc: t.seoContent.uc5Desc,
+    icon: `<svg class="w-6 h-6 text-rose-600 dark:text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>`,
+  },
+  {
+    title: t.seoContent.uc6Title,
+    desc: t.seoContent.uc6Desc,
+    icon: `<svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>`,
+  },
+];
+---
+
+<section id="seo-content" class="py-16 sm:py-24 bg-slate-100/40 dark:bg-slate-900/20 border-t border-slate-200/60 dark:border-slate-800/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-brand-500 dark:text-brand-400 mb-2 block">
+        Knowledge Hub & Best Practices
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        {t.seoContent.sectionTitle}
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400">
+        {t.seoContent.sectionSub}
+      </p>
+    </div>
+
+    <!-- Use Cases Grid -->
+    <div class="mb-16">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-8 text-center sm:text-left">
+        {t.seoContent.useCasesTitle}
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          useCases.map((uc) => (
+            <div class="p-6 rounded-3xl glass-panel hover:border-slate-300 dark:hover:border-slate-700 transition-colors">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80">
+                  <Fragment set:html={uc.icon} />
+                </div>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white">
+                  {uc.title}
+                </h4>
+              </div>
+              <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                {uc.desc}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Scannability & Print Guide Card -->
+    <div class="p-8 sm:p-10 rounded-3xl glass-panel border border-brand-200/60 dark:border-[#233D4D]/40 bg-gradient-to-br from-white/90 via-brand-50/30 to-white/90 dark:from-slate-900/90 dark:via-brand-950/20 dark:to-slate-900/90">
+      <div class="max-w-3xl">
+        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+          <svg class="w-6 h-6 text-brand-500 dark:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>{t.seoContent.guideTitle}</span>
+        </h3>
+        <div class="space-y-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+          <p class="flex items-start gap-3">
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-100 dark:bg-[#233D4D] text-brand-500 dark:text-brand-300 text-xs font-bold flex-shrink-0 mt-0.5">1</span>
+            <span>{t.seoContent.guideText1}</span>
+          </p>
+          <p class="flex items-start gap-3">
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-100 dark:bg-[#233D4D] text-brand-500 dark:text-brand-300 text-xs font-bold flex-shrink-0 mt-0.5">2</span>
+            <span>{t.seoContent.guideText2}</span>
+          </p>
+          <p class="flex items-start gap-3">
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-100 dark:bg-[#233D4D] text-brand-500 dark:text-brand-300 text-xs font-bold flex-shrink-0 mt-0.5">3</span>
+            <span>{t.seoContent.guideText3}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

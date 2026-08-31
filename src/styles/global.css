@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-primary: #EAECF0;
+    --color-bg-card: #ffffff;
+    --color-border: #d0d5dd;
+    --color-text-primary: #000000;
+    --color-text-muted: #4a5565;
+    --color-accent: #FE7F2D;
+    --color-accent-hover: #e56c1e;
+    --color-dark-teal: #233D4D;
+  }
+
+  .dark {
+    --color-bg-primary: #0a1117;
+    --color-bg-card: #111a22;
+    --color-border: #1e2e3a;
+    --color-text-primary: #EAECF0;
+    --color-text-muted: #94a3b8;
+    --color-accent: #FE7F2D;
+    --color-accent-hover: #feb06b;
+    --color-dark-teal: #233D4D;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(208, 213, 221, 0.8);
+}
+
+.dark .glass-panel {
+  background: rgba(17, 26, 34, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(30, 46, 58, 0.8);
+}
+
+.glass-panel-subtle {
+  background: rgba(234, 236, 240, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(208, 213, 221, 0.6);
+}
+
+.dark .glass-panel-subtle {
+  background: rgba(30, 46, 58, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(35, 61, 77, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b0b8c4;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #2a4050;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8090a0;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3a5565;
+}
+
+/* Custom Range Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #d0d5dd;
+}
+
+.dark input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #233D4D;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 9999px;
+  background: #FE7F2D;
+  margin-top: -6px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #e56c1e;
+}
+
+/* Color input customization */
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+
+.dark input[type="color"]::-webkit-color-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  header,
+  footer,
+  .no-print,
+  #features,
+  #how-it-works,
+  #faq,
+  #seo-content,
+  .controls-column {
+    display: none !important;
+  }
+
+  .print-only-container {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    page-break-inside: avoid;
+  }
+
+  .qr-preview-card {
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+}

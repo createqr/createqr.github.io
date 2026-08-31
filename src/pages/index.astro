@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import QrGeneratorWorkspace from '@/components/QrGeneratorWorkspace.jsx';
+import Features from '@/components/Features.astro';
+import HowItWorks from '@/components/HowItWorks.astro';
+import SeoContent from '@/components/SeoContent.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import { useTranslations } from '@/i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={t.site.title} description={t.site.description}>
+  <QrGeneratorWorkspace client:load lang={lang} />
+  <Features lang={lang} />
+  <HowItWorks lang={lang} />
+  <SeoContent lang={lang} />
+  <FaqSection lang={lang} />
+</Layout>

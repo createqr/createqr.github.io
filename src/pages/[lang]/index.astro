@@ -1,0 +1,30 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import QrGeneratorWorkspace from '@/components/QrGeneratorWorkspace.jsx';
+import Features from '@/components/Features.astro';
+import HowItWorks from '@/components/HowItWorks.astro';
+import SeoContent from '@/components/SeoContent.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import { useTranslations, type SupportedLanguage } from '@/i18n/utils';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'pt' } },
+    { params: { lang: 'de' } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'ja' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: SupportedLanguage };
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={t.site.title} description={t.site.description}>
+  <QrGeneratorWorkspace client:load lang={lang} />
+  <Features lang={lang} />
+  <HowItWorks lang={lang} />
+  <SeoContent lang={lang} />
+  <FaqSection lang={lang} />
+</Layout>

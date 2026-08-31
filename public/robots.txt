@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://createqr.github.io/sitemap.xml

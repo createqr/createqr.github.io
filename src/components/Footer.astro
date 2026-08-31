@@ -1,0 +1,141 @@
+---
+import { useTranslations, languages, getLocalizedPath, type SupportedLanguage } from '@/i18n/utils';
+
+export interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const currentPath = Astro.url.pathname;
+const supportUrl = 'https://buymeacoffee.com/kisharadilz';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-white/80 dark:bg-[#0a1117]/90 border-t border-[#d0d5dd] dark:border-[#1e2e3a] transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    
+    <!-- Top Row: Brand & Privacy Banner -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      
+      <!-- Brand & Privacy Mission -->
+      <div class="md:col-span-2 space-y-4">
+        <a href={lang === 'en' ? '/' : `/${lang}/`} class="flex items-center gap-3 group">
+          <div class="flex items-center justify-center w-8 h-8 rounded-xl bg-brand-500 text-white shadow-sm">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="6" height="6" x="3" y="3" rx="1.5"/>
+              <rect width="6" height="6" x="15" y="3" rx="1.5"/>
+              <rect width="6" height="6" x="3" y="15" rx="1.5"/>
+              <path d="M15 15h2v2h-2z"/>
+              <path d="M19 15h2v2h-2z"/>
+              <path d="M15 19h2v2h-2z"/>
+              <path d="M19 19h2v2h-2z"/>
+            </svg>
+          </div>
+          <span class="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
+            CreateQR
+          </span>
+        </a>
+        <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
+          {t.footer.tag}
+        </p>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-semibold border border-emerald-200 dark:border-emerald-800/60">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>{t.footer.privacyBadge}</span>
+        </div>
+      </div>
+
+      <!-- Quick Navigation -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
+          {t.footer.linksTitle}
+        </h4>
+        <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+          <li><a href="#generator" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">{t.nav.generator}</a></li>
+          <li><a href="#features" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">{t.nav.features}</a></li>
+          <li><a href="#how-it-works" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">{t.nav.howItWorks}</a></li>
+          <li><a href="#faq" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">{t.nav.faq}</a></li>
+        </ul>
+      </div>
+
+      <!-- Supported Data Types -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
+          {t.footer.dataTypesTitle}
+        </h4>
+        <ul class="grid grid-cols-2 gap-x-2 gap-y-2 text-xs text-slate-600 dark:text-slate-400">
+          <li>{t.dataTypes.url}</li>
+          <li>{t.dataTypes.wifi}</li>
+          <li>{t.dataTypes.vcard}</li>
+          <li>{t.dataTypes.text}</li>
+          <li>{t.dataTypes.email}</li>
+          <li>{t.dataTypes.phone}</li>
+          <li>{t.dataTypes.sms}</li>
+          <li>{t.dataTypes.crypto}</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Buy Me A Coffee Support Banner -->
+    <div class="p-6 rounded-2xl glass-panel bg-gradient-to-r from-brand-500/10 via-brand-400/5 to-transparent border border-brand-400/20 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5 text-center sm:text-left">
+        <div class="p-2.5 rounded-xl bg-[#FE7F2D] text-slate-950 flex-shrink-0 shadow-sm">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M20.216 6.415l-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.156-.35-.16-.549-.033-.94-.037-1.88-.04-2.82 0-.416-.367-.76-.782-.76H6.47c-.415 0-.782.344-.782.76-.003.94-.007 1.88-.04 2.82-.004.199-.008.406-.16.549-.15.143-.373.172-.57.241-.613.216-.882.781-1.001 1.379l-.132.666C3.275 8.98 3 11.58 3 14.18c0 4.298 3.486 7.784 7.784 7.784h2.432c4.298 0 7.784-3.486 7.784-7.784 0-2.6-.275-5.2-.784-7.765zm-2.025 7.765c0 3.19-2.595 5.784-5.784 5.784h-2.432c-3.19 0-5.784-2.595-5.784-5.784 0-2.31.242-4.63.684-6.915h12.632c.442 2.285.684 4.605.684 6.915z"/>
+          </svg>
+        </div>
+        <div>
+          <h5 class="text-sm font-bold text-slate-900 dark:text-white">
+            {t.support.ctaTitle}
+          </h5>
+          <p class="text-xs text-slate-600 dark:text-slate-400">
+            {t.support.ctaSubtitle}
+          </p>
+        </div>
+      </div>
+      <a
+        href={supportUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FE7F2D] text-slate-950 hover:bg-[#FE7F2D]/90 font-bold text-xs shadow-sm transition-transform active:scale-95 flex-shrink-0"
+      >
+        <span>{t.support.ctaButton}</span>
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="7" y1="17" x2="17" y2="7"/>
+          <polyline points="7 7 17 7 17 17"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Languages Links List -->
+    <div class="flex flex-wrap items-center justify-center gap-3 pt-6 pb-6 border-t border-slate-200/60 dark:border-slate-800/60 text-xs text-slate-500 dark:text-slate-400">
+      <span class="font-semibold text-slate-700 dark:text-slate-300">Languages:</span>
+      {
+        (Object.keys(languages) as SupportedLanguage[]).map((l) => (
+          <a
+            href={getLocalizedPath(l, currentPath)}
+            class={`hover:text-brand-500 dark:hover:text-brand-400 transition-colors ${
+              l === lang ? 'font-bold text-brand-500 dark:text-brand-400 underline underline-offset-4' : ''
+            }`}
+          >
+            {languages[l]}
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Bottom Attribution -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-200/60 dark:border-slate-800/60 text-xs text-slate-500 dark:text-slate-400">
+      <p>© {currentYear} CreateQR. {t.footer.copyright}</p>
+      <p class="flex items-center gap-1">
+        <span>{t.footer.devCredits}</span>
+        <span>•</span>
+        <a href={supportUrl} target="_blank" rel="noopener noreferrer" class="text-brand-500 dark:text-brand-400 hover:underline font-medium">
+          Buy Me a Coffee ☕
+        </a>
+      </p>
+    </div>
+
+  </div>
+</footer>

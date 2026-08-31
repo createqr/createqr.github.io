@@ -1,0 +1,233 @@
+---
+import { useTranslations, type SupportedLanguage } from '@/i18n/utils';
+import LanguagePicker from './LanguagePicker.astro';
+import ThemeToggle from './ThemeToggle.jsx';
+
+export interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const supportUrl = 'https://buymeacoffee.com/kisharadilz';
+---
+
+<header class="sticky top-0 z-40 w-full glass-panel border-b border-[#d0d5dd]/80 dark:border-[#1e2e3a]/80 transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20 gap-3">
+      
+      <!-- Brand Logo -->
+      <a href={lang === 'en' ? '/' : `/${lang}/`} class="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-500 rounded-xl flex-shrink-0">
+        <div class="relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-[#FE7F2D] via-[#e56c1e] to-[#233D4D] text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform duration-200">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="6" height="6" x="3" y="3" rx="1.5"/>
+            <rect width="6" height="6" x="15" y="3" rx="1.5"/>
+            <rect width="6" height="6" x="3" y="15" rx="1.5"/>
+            <path d="M15 15h2v2h-2z"/>
+            <path d="M19 15h2v2h-2z"/>
+            <path d="M15 19h2v2h-2z"/>
+            <path d="M19 19h2v2h-2z"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-[#000000] via-[#233D4D] to-[#FE7F2D] dark:from-white dark:via-slate-100 dark:to-[#fe9749] bg-clip-text text-transparent">
+            CreateQR
+          </span>
+          <span class="text-[10px] font-medium tracking-wide text-slate-500 dark:text-slate-400 -mt-1 hidden sm:block">
+            100% Client-Side
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop-Only Navigation Links (Large Screens >= 1024px) -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-700 dark:text-slate-200">
+        <a href="#generator" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">
+          {t.nav.generator}
+        </a>
+        <a href="#features" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">
+          {t.nav.features}
+        </a>
+        <a href="#how-it-works" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">
+          {t.nav.howItWorks}
+        </a>
+        <a href="#faq" class="hover:text-brand-500 dark:hover:text-brand-400 transition-colors">
+          {t.nav.faq}
+        </a>
+      </nav>
+
+      <!-- Action Tools: Buy Me a Coffee + Language + Theme + Mobile/Tab Menu Button -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        
+        <!-- Buy Me a Coffee Support Button (Large Screens >= 1024px) -->
+        <a
+          href={supportUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden lg:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#FE7F2D] text-slate-950 hover:bg-[#FE7F2D]/90 active:scale-95 font-semibold text-xs transition-all shadow-sm shadow-brand-500/10 focus:outline-none focus:ring-2 focus:ring-brand-400"
+          title="Support the developer on Buy Me a Coffee"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M20.216 6.415l-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.156-.35-.16-.549-.033-.94-.037-1.88-.04-2.82 0-.416-.367-.76-.782-.76H6.47c-.415 0-.782.344-.782.76-.003.94-.007 1.88-.04 2.82-.004.199-.008.406-.16.549-.15.143-.373.172-.57.241-.613.216-.882.781-1.001 1.379l-.132.666C3.275 8.98 3 11.58 3 14.18c0 4.298 3.486 7.784 7.784 7.784h2.432c4.298 0 7.784-3.486 7.784-7.784 0-2.6-.275-5.2-.784-7.765zm-2.025 7.765c0 3.19-2.595 5.784-5.784 5.784h-2.432c-3.19 0-5.784-2.595-5.784-5.784 0-2.31.242-4.63.684-6.915h12.632c.442 2.285.684 4.605.684 6.915z"/>
+          </svg>
+          <span>{t.nav.supportDev}</span>
+        </a>
+
+        <!-- Language Switcher -->
+        <LanguagePicker currentLang={lang} />
+
+        <!-- Theme Switcher -->
+        <ThemeToggle client:load label={t.nav.themeToggle} />
+
+        <!-- Mobile & Tablet Hamburger Toggle (< 1024px) -->
+        <button
+          type="button"
+          id="mobile-nav-toggle"
+          aria-label="Toggle Navigation Menu"
+          aria-expanded="false"
+          class="lg:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500/40"
+        >
+          <!-- Hamburger icon -->
+          <svg id="hamburger-icon" class="w-5 h-5 block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="20" y2="6"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="18" x2="20" y2="18"/>
+          </svg>
+          <!-- Close icon -->
+          <svg id="close-icon" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile & Tablet Dropdown Navigation Menu (< 1024px) -->
+  <div
+    id="mobile-nav-menu"
+    class="hidden lg:hidden border-t border-[#d0d5dd]/80 dark:border-[#1e2e3a]/80 bg-[#EAECF0]/95 dark:bg-[#0a1117]/95 backdrop-blur-xl transition-all duration-200 shadow-xl"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-3">
+      
+      <!-- Nav Links -->
+      <div class="grid grid-cols-2 gap-2">
+        <a
+          href="#generator"
+          class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-950/40 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"
+        >
+          <svg class="w-4 h-4 text-brand-500 dark:text-brand-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="6" height="6" x="3" y="3" rx="1.5"/>
+            <rect width="6" height="6" x="15" y="3" rx="1.5"/>
+            <rect width="6" height="6" x="3" y="15" rx="1.5"/>
+            <path d="M15 15h2v2h-2z"/><path d="M19 19h2v2h-2z"/>
+          </svg>
+          <span>{t.nav.generator}</span>
+        </a>
+
+        <a
+          href="#features"
+          class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-950/40 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"
+        >
+          <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>{t.nav.features}</span>
+        </a>
+
+        <a
+          href="#how-it-works"
+          class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-950/40 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"
+        >
+          <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>{t.nav.howItWorks}</span>
+        </a>
+
+        <a
+          href="#faq"
+          class="mobile-nav-link flex items-center gap-2 p-2.5 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-brand-50 dark:hover:bg-brand-950/40 hover:text-brand-500 dark:hover:text-brand-400 transition-colors"
+        >
+          <svg class="w-4 h-4 text-amber-600 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span>{t.nav.faq}</span>
+        </a>
+      </div>
+
+      <!-- Mobile / Tablet Support Button -->
+      <div class="pt-2 border-t border-slate-200/60 dark:border-slate-800/60">
+        <a
+          href={supportUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl bg-[#FE7F2D] text-slate-950 hover:bg-[#FE7F2D]/90 active:scale-[0.99] font-bold text-xs shadow-sm transition-all"
+        >
+          <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24">
+            <path d="M20.216 6.415l-.132-.666c-.119-.598-.388-1.163-1.001-1.379-.197-.069-.42-.098-.57-.241-.152-.143-.156-.35-.16-.549-.033-.94-.037-1.88-.04-2.82 0-.416-.367-.76-.782-.76H6.47c-.415 0-.782.344-.782.76-.003.94-.007 1.88-.04 2.82-.004.199-.008.406-.16.549-.15.143-.373.172-.57.241-.613.216-.882.781-1.001 1.379l-.132.666C3.275 8.98 3 11.58 3 14.18c0 4.298 3.486 7.784 7.784 7.784h2.432c4.298 0 7.784-3.486 7.784-7.784 0-2.6-.275-5.2-.784-7.765zm-2.025 7.765c0 3.19-2.595 5.784-5.784 5.784h-2.432c-3.19 0-5.784-2.595-5.784-5.784 0-2.31.242-4.63.684-6.915h12.632c.442 2.285.684 4.605.684 6.915z"/>
+          </svg>
+          <span>{t.nav.supportDev} (Buy Me a Coffee)</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<script>
+  function setupMobileNav() {
+    const toggleBtn = document.getElementById('mobile-nav-toggle');
+    const menu = document.getElementById('mobile-nav-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const links = document.querySelectorAll('.mobile-nav-link');
+
+    if (!toggleBtn || !menu) return;
+
+    function toggleMenu(forceClose?: boolean) {
+      const isHidden = forceClose !== undefined ? !forceClose : menu?.classList.contains('hidden');
+      if (isHidden) {
+        menu?.classList.remove('hidden');
+        toggleBtn?.setAttribute('aria-expanded', 'true');
+        hamburgerIcon?.classList.add('hidden');
+        hamburgerIcon?.classList.remove('block');
+        closeIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('block');
+      } else {
+        menu?.classList.add('hidden');
+        toggleBtn?.setAttribute('aria-expanded', 'false');
+        hamburgerIcon?.classList.remove('hidden');
+        hamburgerIcon?.classList.add('block');
+        closeIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('block');
+      }
+    }
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        toggleMenu(true);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target as Node) && !toggleBtn.contains(e.target as Node)) {
+        toggleMenu(true);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleMenu(true);
+      }
+    });
+  }
+
+  setupMobileNav();
+  document.addEventListener('astro:page-load', setupMobileNav);
+</script>
